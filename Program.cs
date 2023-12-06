@@ -169,31 +169,31 @@ for (int i = 0; i < matrix.GetLength(0); i++)
 }
 
 static int RowMinSum(int[,] matrix)
+{
+    int numRows = matrix.GetLength(0);
+    int numCols = matrix.GetLength(1);
+
+    int minSum = int.MaxValue;
+    int minSumRowIndex = -1;
+
+    for (int row = 0; row < numRows; row++)
     {
-        int numRows = matrix.GetLength(0);
-        int numCols = matrix.GetLength(1);
 
-        int minSum = int.MaxValue;
-        int minSumRowIndex = -1;
-
-        for (int row = 0; row < numRows; row++)
+        int currentSum = 0;
+        for (int col = 0; col < numCols; col++)
         {
-
-            int currentSum = 0;
-            for (int col = 0; col < numCols; col++)
-            {
-                currentSum += matrix[row, col];
-            }
-
-            if (currentSum < minSum)
-            {
-                minSum = currentSum;
-                minSumRowIndex = row;
-            }
+            currentSum += matrix[row, col];
         }
 
-        return minSumRowIndex;
+        if (currentSum < minSum)
+        {
+            minSum = currentSum;
+            minSumRowIndex = row;
+        }
     }
+
+    return minSumRowIndex;
+}
 
 int minSumRowIndex = RowMinSum(matrix);
 
